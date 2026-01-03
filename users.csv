@@ -1,0 +1,2 @@
+full_name,email,password_hash,created_at
+jiya,jiyap@gmail.com,scrypt:32768:8:1$TAOe4089vYOcvHCY$1bf920926deb811c9ecba505ff7b8a57bc33ed8a9f1e9f6dba2ffa418dc475a7155c052d6acae69282b7fcfe9d22a08d103abcf9ff0b688a26e262bc0f0cdc32,2025-12-10 15:37:07

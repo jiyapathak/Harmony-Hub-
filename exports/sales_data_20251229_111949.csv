@@ -1,0 +1,8 @@
+order_id,customer,email,total_amount,status,payment_method,delivery_address,order_date,items_count
+1,bot,bot33@gamil.com,1849.97,pending,cash_on_delivery,"
+        bot
+        chhani, vadodara
+        Vadodara 
+        362514
+        Phone: 1245369871
+    ",2025-12-29 05:37:55,3

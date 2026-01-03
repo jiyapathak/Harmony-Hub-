@@ -1,0 +1,41 @@
+[
+  {
+    "order_id": 1,
+    "customer": "bot",
+    "product_name": "Yamaha P-125 Digital Piano",
+    "category": "Pianos & Keyboards",
+    "brand": "Yamaha",
+    "quantity_bought": 1,
+    "price_per_item": 649.99,
+    "total_item_price": 649.99,
+    "payment_method": "cash_on_delivery",
+    "order_status": "pending",
+    "purchase_date": "2025-12-29 05:37:55"
+  },
+  {
+    "order_id": 1,
+    "customer": "bot",
+    "product_name": "Pearl Export Drum Kit",
+    "category": "Drums",
+    "brand": "Pearl",
+    "quantity_bought": 1,
+    "price_per_item": 899.99,
+    "total_item_price": 899.99,
+    "payment_method": "cash_on_delivery",
+    "order_status": "pending",
+    "purchase_date": "2025-12-29 05:37:55"
+  },
+  {
+    "order_id": 1,
+    "customer": "bot",
+    "product_name": "Stentor Violin Student II",
+    "category": "Violins",
+    "brand": "Stentor",
+    "quantity_bought": 1,
+    "price_per_item": 299.99,
+    "total_item_price": 299.99,
+    "payment_method": "cash_on_delivery",
+    "order_status": "pending",
+    "purchase_date": "2025-12-29 05:37:55"
+  }
+]

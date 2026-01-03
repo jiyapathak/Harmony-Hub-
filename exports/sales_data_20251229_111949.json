@@ -1,0 +1,13 @@
+[
+  {
+    "order_id": 1,
+    "customer": "bot",
+    "email": "bot33@gamil.com",
+    "total_amount": 1849.97,
+    "status": "pending",
+    "payment_method": "cash_on_delivery",
+    "delivery_address": "\n        bot\n        chhani, vadodara\n        Vadodara \n        362514\n        Phone: 1245369871\n    ",
+    "order_date": "2025-12-29 05:37:55",
+    "items_count": 3
+  }
+]

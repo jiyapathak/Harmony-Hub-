@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Premium musical instruments online store - Guitars, Pianos, Drums, and more">
+    <title>HarmonyHub - Premium Musical Instruments</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="/" class="logo">
+                <i class="fas fa-music"></i>
+                HarmonyHub
+            </a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/shop">Shop</a></li>
+                <li><a href="#categories">Categories</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="/login" class="nav-icon" id="userIcon">
+                    <i class="fas fa-user"></i>
+                </a>
+                <a href="/cart" class="nav-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Unleash Your Musical Passion</h1>
+            <p>Discover premium instruments from world-renowned brands. From guitars to keyboards, we have everything to amplify your sound.</p>
+            <div class="cta-buttons">
+                <a href="/shop" class="btn btn-primary">Shop Now</a>
+                <a href="#categories" class="btn btn-secondary">Explore Categories</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <div class="container">
+        <div class="section-title">
+            <h2>Featured Instruments</h2>
+            <p>Handpicked premium instruments for passionate musicians</p>
+        </div>
+        <div class="products-grid" id="featuredProducts">
+            <!-- Products loaded via JavaScript -->
+        </div>
+    </div>
+
+    <!-- Categories Section -->
+    <div class="container" id="categories">
+        <div class="section-title">
+            <h2>Shop by Category</h2>
+            <p>Find the perfect instrument for your musical journey</p>
+        </div>
+        <div class="categories-grid">
+            <div class="category-card" onclick="window.location.href='/shop?category=Guitars'">
+                <div class="category-icon">🎸</div>
+                <h3>Guitars</h3>
+                <p>Electric, Acoustic, Bass</p>
+            </div>
+            <div class="category-card" onclick="window.location.href='/shop?category=Pianos & Keyboards'">
+                <div class="category-icon">🎹</div>
+                <h3>Pianos & Keyboards</h3>
+                <p>Digital, Acoustic, MIDI</p>
+            </div>
+            <div class="category-card" onclick="window.location.href='/shop?category=Drums'">
+                <div class="category-icon">🥁</div>
+                <h3>Drums</h3>
+                <p>Acoustic, Electronic</p>
+            </div>
+            <div class="category-card" onclick="window.location.href='/shop?category=Violins'">
+                <div class="category-icon">🎻</div>
+                <h3>Violins</h3>
+                <p>Student, Professional</p>
+            </div>
+            <div class="category-card" onclick="window.location.href='/shop?category=Flutes'">
+                <div class="category-icon">🎺</div>
+                <h3>Wind Instruments</h3>
+                <p>Flutes, Saxophones</p>
+            </div>
+            <div class="category-card" onclick="window.location.href='/shop?category=DJ Equipment'">
+                <div class="category-icon">🎧</div>
+                <h3>DJ Equipment</h3>
+                <p>Controllers, Mixers</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About HarmonyHub</h3>
+                <p>Your trusted source for premium musical instruments. We bring the joy of music to passionate musicians worldwide.</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="/shop">Shop All</a></li>
+                    <li><a href="#categories">Categories</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="#">Shipping Info</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <p>Subscribe for exclusive deals and new arrivals</p>
+                <input type="email" placeholder="Your email" style="padding: 0.8rem; border-radius: 10px; border: none; width: 100%; margin-top: 0.5rem;">
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 HarmonyHub. All rights reserved. Made with ❤️ for music lovers.</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/cart.js') }}"></script>
+</body>
+</html>

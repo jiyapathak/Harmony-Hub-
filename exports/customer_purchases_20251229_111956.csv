@@ -1,0 +1,4 @@
+order_id,customer,product_name,category,brand,quantity_bought,price_per_item,total_item_price,payment_method,order_status,purchase_date
+1,bot,Yamaha P-125 Digital Piano,Pianos & Keyboards,Yamaha,1,649.99,649.99,cash_on_delivery,pending,2025-12-29 05:37:55
+1,bot,Pearl Export Drum Kit,Drums,Pearl,1,899.99,899.99,cash_on_delivery,pending,2025-12-29 05:37:55
+1,bot,Stentor Violin Student II,Violins,Stentor,1,299.99,299.99,cash_on_delivery,pending,2025-12-29 05:37:55

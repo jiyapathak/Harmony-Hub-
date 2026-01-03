@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - HarmonyHub</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cart-page.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="/" class="logo">
+                <i class="fas fa-music"></i>
+                HarmonyHub
+            </a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/shop">Shop</a></li>
+                <li><a href="/#categories">Categories</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="/login" class="nav-icon" id="userIcon">
+                    <i class="fas fa-user"></i>
+                </a>
+                <a href="/cart" class="nav-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" style="margin-top: 120px;">
+        <div class="section-title">
+            <h2>Shopping Cart</h2>
+            <p>Review your items before checkout</p>
+        </div>
+
+        <div class="cart-container">
+            <div class="cart-items" id="cartItems">
+                <!-- Cart items loaded via JavaScript -->
+            </div>
+
+            <div class="cart-summary">
+                <h3>Order Summary</h3>
+                <div class="summary-row">
+                    <span>Subtotal:</span>
+                    <span id="subtotal">$0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping:</span>
+                    <span id="shipping">$0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Tax (10%):</span>
+                    <span id="tax">$0.00</span>
+                </div>
+                <hr style="border-color: var(--card-bg); margin: 1rem 0;">
+                <div class="summary-row total">
+                    <span>Total:</span>
+                    <span id="total">$0.00</span>
+                </div>
+                <button class="btn btn-primary" style="width: 100%; margin-top: 1.5rem;" onclick="checkout()">
+                    <i class="fas fa-lock"></i> Proceed to Checkout
+                </button>
+                <a href="/shop" class="btn btn-secondary" style="width: 100%; margin-top: 1rem; text-align: center;">
+                    Continue Shopping
+                </a>
+            </div>
+        </div>
+
+        <div id="emptyCart" style="display: none; text-align: center; padding: 4rem;">
+            <i class="fas fa-shopping-cart" style="font-size: 5rem; color: var(--text-secondary); margin-bottom: 1rem;"></i>
+            <h3 style="margin-bottom: 1rem;">Your cart is empty</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 2rem;">Add some instruments to get started!</p>
+            <a href="/shop" class="btn btn-primary">Browse Products</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About HarmonyHub</h3>
+                <p>Your trusted source for premium musical instruments.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="/shop">Shop All</a></li>
+                    <li><a href="/#categories">Categories</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 HarmonyHub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/cart-page.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/cart.js') }}"></script>
+</body>
+</html>

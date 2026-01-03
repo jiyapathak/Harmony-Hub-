@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Profile - HarmonyHub</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+      .profile-container {
+        display: grid;
+        grid-template-columns: 250px 1fr;
+        gap: 30px;
+        margin-bottom: 60px;
+      }
+
+      .profile-sidebar {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        height: fit-content;
+        position: sticky;
+        top: 120px;
+      }
+
+      .profile-user {
+        text-align: center;
+        margin-bottom: 30px;
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 20px;
+      }
+
+      .profile-avatar {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 40px;
+        margin: 0 auto 15px;
+      }
+
+      .profile-name {
+        font-size: 16px;
+        font-weight: bold;
+        color: #333;
+      }
+
+      .profile-menu {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .profile-menu li {
+        margin-bottom: 10px;
+      }
+
+      .profile-menu a {
+        display: flex;
+        align-items: center;
+        padding: 12px 15px;
+        text-decoration: none;
+        color: #555;
+        border-radius: 8px;
+        transition: all 0.3s;
+      }
+
+      .profile-menu a:hover,
+      .profile-menu a.active {
+        background: #f0f0f0;
+        color: #ff6b6b;
+      }
+
+      .profile-menu i {
+        width: 20px;
+        margin-right: 10px;
+      }
+
+      .profile-content {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .content-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 30px;
+        color: #333;
+        border-bottom: 2px solid #ff6b6b;
+        padding-bottom: 15px;
+      }
+
+      .orders-list {
+        display: grid;
+        gap: 20px;
+      }
+
+      .order-card {
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 20px;
+        transition: all 0.3s;
+      }
+
+      .order-card:hover {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border-color: #ff6b6b;
+      }
+
+      .order-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+
+      .order-id {
+        font-weight: bold;
+        font-size: 16px;
+        color: #333;
+      }
+
+      .order-date {
+        color: #888;
+        font-size: 13px;
+      }
+
+      .order-status {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: bold;
+      }
+
+      .status-pending {
+        background: #fff3cd;
+        color: #856404;
+      }
+
+      .status-confirmed {
+        background: #d1ecf1;
+        color: #0c5460;
+      }
+
+      .status-shipped {
+        background: #cce5ff;
+        color: #004085;
+      }
+
+      .status-delivered {
+        background: #d4edda;
+        color: #155724;
+      }
+
+      .order-items {
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #e0e0e0;
+      }
+
+      .order-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+        padding: 10px;
+        background: #f9f9f9;
+        border-radius: 5px;
+      }
+
+      .item-info {
+        flex: 1;
+      }
+
+      .item-name {
+        font-weight: 600;
+        color: #333;
+        font-size: 14px;
+      }
+
+      .item-qty {
+        font-size: 12px;
+        color: #888;
+        margin-top: 3px;
+      }
+
+      .item-price {
+        font-weight: bold;
+        color: #ff6b6b;
+        text-align: right;
+      }
+
+      .order-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .order-total {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+      }
+
+      .order-total span {
+        color: #ff6b6b;
+      }
+
+      .order-details-btn {
+        padding: 8px 16px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: transform 0.3s;
+      }
+
+      .order-details-btn:hover {
+        transform: translateY(-2px);
+      }
+
+      .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        color: #888;
+      }
+
+      .empty-state i {
+        font-size: 60px;
+        color: #ddd;
+        margin-bottom: 15px;
+      }
+
+      .empty-state p {
+        font-size: 18px;
+        margin-bottom: 20px;
+      }
+
+      .empty-state a {
+        display: inline-block;
+        padding: 12px 24px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        transition: transform 0.3s;
+      }
+
+      .empty-state a:hover {
+        transform: translateY(-2px);
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+
+      .modal-content {
+        background-color: white;
+        margin: 5% auto;
+        padding: 30px;
+        border-radius: 10px;
+        width: 80%;
+        max-width: 600px;
+        max-height: 80vh;
+        overflow-y: auto;
+      }
+
+      .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 15px;
+      }
+
+      .modal-header h2 {
+        margin: 0;
+        color: #333;
+      }
+
+      .close-btn {
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: #888;
+      }
+
+      .close-btn:hover {
+        color: #333;
+      }
+
+      .modal-item {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 20px;
+        padding: 15px;
+        background: #f9f9f9;
+        border-radius: 8px;
+      }
+
+      .modal-item-img {
+        width: 80px;
+        height: 80px;
+        background: #e0e0e0;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .modal-item-details {
+        flex: 1;
+      }
+
+      .modal-item-name {
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 5px;
+      }
+
+      .modal-item-qty {
+        font-size: 14px;
+        color: #888;
+        margin-bottom: 10px;
+      }
+
+      .modal-item-price {
+        color: #ff6b6b;
+        font-weight: bold;
+      }
+
+      .modal-summary {
+        border-top: 2px solid #e0e0e0;
+        padding-top: 20px;
+      }
+
+      .modal-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        font-size: 14px;
+      }
+
+      .modal-total {
+        font-size: 18px;
+        font-weight: bold;
+        color: #ff6b6b;
+      }
+
+      @media (max-width: 768px) {
+        .profile-container {
+          grid-template-columns: 1fr;
+        }
+
+        .profile-sidebar {
+          position: static;
+        }
+
+        .order-header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .order-status {
+          margin-top: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="navbar-container">
+        <a href="/" class="logo">
+          <i class="fas fa-music"></i>
+          HarmonyHub
+        </a>
+        <ul class="nav-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/shop">Shop</a></li>
+          <li><a href="/#categories">Categories</a></li>
+          <li><a href="/about">About</a></li>
+        </ul>
+        <div class="nav-icons">
+          <a href="/profile" class="nav-icon" id="userIcon">
+            <i class="fas fa-user"></i>
+          </a>
+          <a href="/cart" class="nav-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count" id="cartCount">0</span>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container" style="margin-top: 120px">
+      <div class="section-title">
+        <h2>My Profile</h2>
+        <p>Manage your account and orders</p>
+      </div>
+
+      <div class="profile-container">
+        <!-- Sidebar -->
+        <aside class="profile-sidebar">
+          <div class="profile-user">
+            <div class="profile-avatar">
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="profile-name" id="profileUsername">Guest</div>
+            <p
+              style="font-size: 12px; color: #888; margin-top: 5px"
+              id="profileEmail">
+              user@example.com
+            </p>
+          </div>
+
+          <ul class="profile-menu">
+            <li>
+              <a href="#" class="menu-item active" data-section="orders">
+                <i class="fas fa-shopping-bag"></i>
+                My Orders
+              </a>
+            </li>
+            <li>
+              <a href="#" class="menu-item" data-section="account">
+                <i class="fas fa-user-circle"></i>
+                Account Settings
+              </a>
+            </li>
+            <li>
+              <a href="#" class="menu-item" data-section="addresses">
+                <i class="fas fa-map-marker-alt"></i>
+                Saved Addresses
+              </a>
+            </li>
+            <li>
+              <a href="#" id="logoutBtn">
+                <i class="fas fa-sign-out-alt"></i>
+                Logout
+              </a>
+            </li>
+          </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="profile-content">
+          <!-- Orders Section -->
+          <section id="ordersSection">
+            <div class="content-title">
+              <i class="fas fa-shopping-bag"></i> My Orders
+            </div>
+
+            <div id="ordersContainer" class="orders-list">
+              <div class="empty-state">
+                <i class="fas fa-inbox"></i>
+                <p>No orders yet</p>
+                <a href="/shop">Start Shopping</a>
+              </div>
+            </div>
+          </section>
+
+          <!-- Account Section -->
+          <section id="accountSection" style="display: none">
+            <div class="content-title">
+              <i class="fas fa-user-circle"></i> Account Settings
+            </div>
+
+            <div style="padding: 40px 20px; text-align: center; color: #888">
+              <p>Account settings will be available soon.</p>
+            </div>
+          </section>
+
+          <!-- Addresses Section -->
+          <section id="addressesSection" style="display: none">
+            <div class="content-title">
+              <i class="fas fa-map-marker-alt"></i> Saved Addresses
+            </div>
+
+            <div style="padding: 40px 20px; text-align: center; color: #888">
+              <p>Saved addresses will be available soon.</p>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <!-- Order Details Modal -->
+    <div id="orderModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Order Details</h2>
+          <button class="close-btn" id="closeModalBtn">&times;</button>
+        </div>
+
+        <div id="modalBody">
+          <!-- Content loaded via JavaScript -->
+        </div>
+      </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/profile.js') }}"></script>
+  </body>
+</html>
